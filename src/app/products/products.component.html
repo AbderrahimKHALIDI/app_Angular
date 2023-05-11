@@ -30,14 +30,14 @@
           <td>
             <i *ngIf="p.promotion==true" class="bi bi-heart-fill text-success"></i>
           </td>
-          <td>
+          <td *ngIf="authService.hasRole('ADMIN')">
             <button (click)="handlePromotion(p)" [ngClass]="p.promotion==true?'btn-danger':'btn-success'" class="btn">
             <span *ngIf="p.promotion==true">Promo off</span>
               <span *ngIf="p.promotion==false">Promo on</span>
             </button>
           </td>
-          <td>
-            <button (click)="handleDeleteProduct(p)" class="btn btn-danger">
+          <td *ngIf="authService.hasRole('ADMIN')">
+            <button  (click)="handleDeleteProduct(p)" class="btn btn-danger">
               <i class="bi bi-trash"></i>
             </button>
           </td>

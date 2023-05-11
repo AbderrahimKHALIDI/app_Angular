@@ -28,7 +28,16 @@ this.authenticatedUser=appUser;
 localStorage.setItem("authUser",JSON.stringify({username:appUser.username,roles:appUser.roles,jwt:"JWT_TOKEN"}));
 return of(true);
   }
-  public isAdmin():boolean{
-    this.authenticatedUser?.roles.includes("ADMIN");
+  public hasRole(role:string):boolean{
+   return this.authenticatedUser!.roles.includes(role);
   }
+public isAuthenticated(){
+return this.authenticatedUser!=undefined;
+}
+public logout():Observable<boolean>{
+    this.authenticatedUser=undefined;
+      localStorage.removeItem("authUser");
+      return of(true);
+}
+
 }
